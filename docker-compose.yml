@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: terra_db
+    environment:
+      POSTGRES_USER: terra_user
+      POSTGRES_PASSWORD: terra_pass
+      POSTGRES_DB: terra_da_esperanca
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U terra_user -d terra_da_esperanca"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

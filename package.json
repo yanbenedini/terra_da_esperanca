@@ -1,0 +1,13 @@
+{
+  "name": "terra-da-esperanca",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx concurrently --names \"DB,API,WEB\" --prefix-colors \"blue,green,magenta\" \"docker compose up\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && venv\\Scripts\\uvicorn app.main:app --reload --port 8000"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
